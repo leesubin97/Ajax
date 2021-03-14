@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>완전한 ajax 예시</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<p id = "demo"></p>
+<br>
+<button>클릭</button>
+
+
+
+<script type="text/javascript">
+$(function () {
+	
+	$("button").click(function () {
+		
+		
+		//기본문법
+		$.ajax({
+			
+			//갈떄 필요한것,
+			//이동할때send////////////
+			url:"data.jsp",
+			type:"get", //get/post ->servlet
+			//data: "t1=XYZ&t2=오늘의 점심은",
+			data: {t1:"주지훈", t2:"잘생김"},
+			
+			
+			////////////////////////send
+			
+			///////////////////////갔다왔을떄 
+			//recv
+			
+			//functin의 갓다와서 데이타는 파라미터의  data
+			success: function(data, status, xhr){
+				//alert("suc");
+				//갔다왔을떄 성공하면 뜬다.
+			
+				//alert(data);  //data.jsp 의 파일 코드를 다 가져온다.
+				$("#demo").html(data);
+				//alert(status);
+				//alert(xhr);
+				alert(xhr.responseText);
+			},
+			error:function(/* xhr, status, error */){
+				alert("error");
+			},
+			complete:function(xhr, status){
+				alert("통신종료");	
+			}
+			/////////////////////////recv
+			
+		});
+		
+		
+		
+	});
+	
+});
+
+
+</script>
+</body>
+</html>
